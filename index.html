@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おうちマネージャー - 一人暮らし管理アプリ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pink-bg': '#FFF9F0',
+                        'pink-header': '#FFD6E0',
+                        'pink-card': '#FFEBF0',
+                        'pink-accent': '#FFC8DD',
+                        'pink-button': '#FF8FAB',
+                        'pink-hover': '#FF6B9E',
+                        'brown-text': '#6B4F4F'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-button.active {
+            background-color: #FFC8DD;
+            color: #6B4F4F;
+        }
+    </style>
+</head>
+<body class="bg-pink-bg min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 z-10 flex items-center justify-between bg-pink-header px-6 py-4 shadow-md">
+        <h1 class="text-2xl font-bold text-brown-text">おうちマネージャー</h1>
+        <div class="flex items-center space-x-2">
+            <div class="h-10 w-10 rounded-full bg-pink-accent p-1">
+                <img src="https://via.placeholder.com/40x40/FFC8DD/6B4F4F?text=😊" alt="アバター" class="h-full w-full rounded-full object-cover">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+        <!-- Welcome Section -->
+        <div class="mb-8 rounded-3xl bg-pink-card p-6 shadow-lg">
+            <div class="mb-4 flex items-end justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-brown-text">こんにちは、ユーザーさん！</h2>
+                    <p class="text-brown-text">今日も素敵な一日を過ごしましょう！</p>
+                </div>
+                <img src="https://via.placeholder.com/80x80/FF8FAB/FFFFFF?text=🏠" alt="キャラクター" class="h-20 w-20 rounded-full">
+            </div>
+            <div class="border-2 border-pink-accent rounded-lg bg-white p-4">
+                <div class="mb-2 flex items-center justify-between">
+                    <h3 class="font-bold text-brown-text">今月の予算</h3>
+                    <span class="text-sm font-medium text-brown-text">¥45,000 / ¥80,000</span>
+                </div>
+                <div class="h-3 bg-pink-card rounded-full overflow-hidden">
+                    <div class="progress-bar h-full bg-pink-accent rounded-full" style="width: 56%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="w-full">
+            <!-- Tab Buttons -->
+            <div class="grid grid-cols-4 bg-pink-card rounded-lg p-1 mb-4">
+                <button class="tab-button active flex items-center justify-center p-3 rounded-md transition-colors" data-tab="home">
+                    <i data-lucide="home" class="h-5 w-5"></i>
+                </button>
+                <button class="tab-button flex items-center justify-center p-3 rounded-md transition-colors" data-tab="tasks">
+                    <i data-lucide="list-todo" class="h-5 w-5"></i>
+                </button>
+                <button class="tab-button flex items-center justify-center p-3 rounded-md transition-colors" data-tab="expenses">
+                    <i data-lucide="wallet" class="h-5 w-5"></i>
+                </button>
+                <button class="tab-button flex items-center justify-center p-3 rounded-md transition-colors" data-tab="shopping">
+                    <i data-lucide="shopping-bag" class="h-5 w-5"></i>
+                </button>
+            </div>
+
+            <!-- Tab Contents -->
+            <!-- Home Tab -->
+            <div id="home" class="tab-content active">
+                <div class="grid gap-4">
+                    <!-- Schedule Card -->
+                    <div class="border-2 border-pink-accent rounded-lg overflow-hidden bg-white">
+                        <div class="bg-pink-accent px-4 py-2">
+                            <h3 class="font-bold text-brown-text">今日のスケジュール</h3>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-3 rounded-lg bg-pink-card p-3">
+                                <i data-lucide="calendar-days" class="h-8 w-8 text-pink-button"></i>
+                                <div>
+                                    <p class="font-medium text-brown-text">お買い物</p>
+                                    <p class="text-sm text-brown-text">15:00 - スーパーマーケット</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Expenses Card -->
+                    <div class="border-2 border-pink-accent rounded-lg overflow-hidden bg-white">
+                        <div class="bg-pink-accent px-4 py-2">
+                            <h3 class="font-bold text-brown-text">最近の支出</h3>
+                        </div>
+                        <div class="p-4">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="rounded-full bg-pink-card p-2">
+                                            <i data-lucide="shopping-bag" class="h-5 w-5 text-pink-button"></i>
+                                        </div>
+                                        <span class="text-brown-text">スーパー</span>
+                                    </div>
+                                    <span class="font-medium text-brown-text">¥3,500</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="rounded-full bg-pink-card p-2">
+                                            <i data-lucide="home" class="h-5 w-5 text-pink-button"></i>
+                                        </div>
+                                        <span class="text-brown-text">家賃</span>
+                                    </div>
+                                    <span class="font-medium text-brown-text">¥65,000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tasks Tab -->
+            <div id="tasks" class="tab-content">
+                <div class="border-2 border-pink-accent rounded-lg overflow-hidden bg-white">
+                    <div class="bg-pink-accent px-4 py-2">
+                        <h3 class="font-bold text-brown-text">タスクリスト</h3>
+                    </div>
+                    <div class="p-4">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="task1" class="h-5 w-5 rounded-full border-2 border-pink-accent text-pink-button focus:ring-pink-button">
+                                <label for="task1" class="text-brown-text">洗濯をする</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="task2" class="h-5 w-5 rounded-full border-2 border-pink-accent text-pink-button focus:ring-pink-button">
+                                <label for="task2" class="text-brown-text">部屋の掃除</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="task3" class="h-5 w-5 rounded-full border-2 border-pink-accent text-pink-button focus:ring-pink-button">
+                                <label for="task3" class="text-brown-text">ゴミ出し</label>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full bg-pink-button text-white hover:bg-pink-hover py-2 px-4 rounded-lg transition-colors">
+                            新しいタスクを追加
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expenses Tab -->
+            <div id="expenses" class="tab-content">
+                <div class="border-2 border-pink-accent rounded-lg overflow-hidden bg-white">
+                    <div class="bg-pink-accent px-4 py-2">
+                        <h3 class="font-bold text-brown-text">支出カテゴリー</h3>
+                    </div>
+                    <div class="p-4">
+                        <div class="space-y-4">
+                            <div>
+                                <div class="mb-1 flex items-center justify-between">
+                                    <span class="text-sm font-medium text-brown-text">食費</span>
+                                    <span class="text-sm text-brown-text">¥25,000 / ¥30,000</span>
+                                </div>
+                                <div class="h-3 bg-pink-card rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full bg-pink-button rounded-full" style="width: 83%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mb-1 flex items-center justify-between">
+                                    <span class="text-sm font-medium text-brown-text">光熱費</span>
+                                    <span class="text-sm text-brown-text">¥8,000 / ¥15,000</span>
+                                </div>
+                                <div class="h-3 bg-pink-card rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full bg-pink-button rounded-full" style="width: 53%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mb-1 flex items-center justify-between">
+                                    <span class="text-sm font-medium text-brown-text">娯楽費</span>
+                                    <span class="text-sm text-brown-text">¥12,000 / ¥20,000</span>
+                                </div>
+                                <div class="h-3 bg-pink-card rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full bg-pink-button rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full bg-pink-button text-white hover:bg-pink-hover py-2 px-4 rounded-lg transition-colors">
+                            支出を記録する
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shopping Tab -->
+            <div id="shopping" class="tab-content">
+                <div class="border-2 border-pink-accent rounded-lg overflow-hidden bg-white">
+                    <div class="bg-pink-accent px-4 py-2">
+                        <h3 class="font-bold text-brown-text">買い物リスト</h3>
+                    </div>
+                    <div class="p-4">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="item1" class="h-5 w-5 rounded-full border-2 border-pink-accent text-pink-button focus:ring-pink-button">
+                                <label for="item1" class="text-brown-text">牛乳</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="item2" class="h-5 w-5 rounded-full border-2 border-pink-accent text-pink-button focus:ring-pink-button">
+                                <label for="item2" class="text-brown-text">パン</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="item3" class="h-5 w-5 rounded-full border-2 border-pink-accent text-pink-button focus:ring-pink-button">
+                                <label for="item3" class="text-brown-text">洗剤</label>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <input type="text" id="newItem" placeholder="新しいアイテム" class="flex-1 rounded-lg border-2 border-pink-accent px-3 py-2 focus:border-pink-button focus:outline-none">
+                            <button onclick="addShoppingItem()" class="bg-pink-button text-white hover:bg-pink-hover px-4 py-2 rounded-lg transition-colors">
+                                追加
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-pink-header p-4 text-center text-sm text-brown-text">
+        おうちマネージャー © 2025
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Tab functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Add shopping item functionality
+        function addShoppingItem() {
+            const input = document.getElementById('newItem');
+            const itemText = input.value.trim();
+            
+            if (itemText) {
+                const shoppingList = document.querySelector('#shopping .space-y-3');
+                const newItem = document.createElement('div');
+                newItem.className = 'flex items-center gap-3';
+                newItem.innerHTML = `
+                    <input type="checkbox" class="h-5 w-5 rounded-full border-2 border-pink-accent text-pink-button focus:ring-pink-button">
+                    <label class="text-brown-text">${itemText}</label>
+                `;
+                shoppingList.appendChild(newItem);
+                input.value = '';
+            }
+        }
+
+        // Add task functionality
+        function addTask() {
+            // Similar implementation for adding tasks
+        }
+
+        // Enter key support for adding items
+        document.getElementById('newItem').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addShoppingItem();
+            }
+        });
+    </script>
+</body>
+</html>
